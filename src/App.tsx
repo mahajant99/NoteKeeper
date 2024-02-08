@@ -1,6 +1,19 @@
 import { useState } from 'react';
 import './App.css';
 
+function NoteList({ notes } : {notes:any}) {
+  return (
+    <ul>
+      {notes.map((note : any , index : any) => (
+        <li key={index}>
+          <p>{note.title}</p>
+          <p>{note.description}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function App() {
 
   const [title, setTitle] = useState("");
@@ -33,14 +46,7 @@ function App() {
       </div>
       <hr />
       <h2>Notes:</h2>
-      <ul>
-        {notes.map((note, index) => (
-          <li key={index}>
-            <p>{note.title}</p>
-            <p>{note.description}</p>
-          </li>
-        ))}
-      </ul>
+      <NoteList notes={notes} />
     </div>
   );
 };
