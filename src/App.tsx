@@ -30,6 +30,11 @@ function Note({handleAddNote}: {handleAddNote: any}){
     setDescription("");
   }
 
+  const handleButtonClick = () => {
+    addNote();
+    handleEmptyInput();
+  };
+
   return(
     <>
     <input type="text" 
@@ -45,7 +50,7 @@ function Note({handleAddNote}: {handleAddNote: any}){
       placeholder="Enter description"
     />
     <br />
-    <button onClick={addNote}>Add Note</button>
+    <button onClick={handleButtonClick}>Add Note</button>
     </>
   )
 }
