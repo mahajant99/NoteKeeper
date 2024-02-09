@@ -25,6 +25,11 @@ function Note({handleAddNote}: {handleAddNote: any}){
     handleAddNote({title, description});
   }
 
+  const handleEmptyInput = () => {
+    setTitle("");
+    setDescription("");
+  }
+
   return(
     <>
     <input type="text" 
@@ -50,7 +55,7 @@ function App() {
 
   const handleAddNote = ({ title, description }: { title: any; description: any }) => {
     setNotes([...notes, { title, description }]);
-  };
+  }
 
   const handleDeleteNote = (index: any) => {
     setNotes(notes.filter((_, i) => i !== index));
