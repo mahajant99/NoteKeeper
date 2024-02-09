@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-function NoteList({ notes } : {notes:any}) {
+function NotesList({ notes } : {notes:any}) {
   return (
     <ul>
       {notes.map((note : any , index : any) => (
@@ -53,7 +53,7 @@ function App() {
       </div>
       <hr />
       <h2>Notes:</h2>
-      <NoteList notes={notes} />
+      <NotesList notes={notes} />
     </div>
   );
 };
