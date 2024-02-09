@@ -14,35 +14,42 @@ function NoteList({ notes } : {notes:any}) {
   );
 }
 
-function App() {
-
+function Note({handleAddNote}: {handleAddNote: any}){
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [notes, setNotes] = useState<{ title: any; description: any }[]>([]);
 
-  const handleInputChange = (e : any) => {
-    if (e.target.name === 'title') {
-      setTitle(e.target.value);
-    } else {
-      setDescription(e.target.value);
-    }
-  };
+  return(
+    <>
+    <input type="text" 
+      name="title" 
+      value={title} 
+      onChange={(e) => setTitle(e.target.value)} 
+      placeholder="Enter title" 
+    />
+    <br />
+    <textarea name="description" 
+      value={description} 
+      onChange={(e) => setDescription(e.target.value)}
+      placeholder="Enter description"
+    />
+    <br />
+    <button onClick={() => handleAddNote(title, description)}>Add Note</button>
+    </>
+  )
+}
 
-  const handleAddNote = () => {
-      setNotes([...notes, { title, description }]);
-      setTitle('');
-      setDescription('');
+function App() {
+  const [notes, setNotes] = useState<Array<{ title: any; description: any }>>([]);
+
+  const handleAddNote = (title: any, description: any) => {
+    setNotes([...notes, { title: title, description: description }]);
   };
 
   return (
     <div>
       <h1>Notekeeper App</h1>
       <div>
-        <input type="text" name="title" value={title} onChange={handleInputChange} placeholder="Enter title" />
-        <br />
-        <textarea name="description" value={description} onChange={handleInputChange} placeholder="Enter description" />
-        <br />
-        <button onClick={handleAddNote}>Add Note</button>
+        <Note handleAddNote={handleAddNote} />        
       </div>
       <hr />
       <h2>Notes:</h2>
