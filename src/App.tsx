@@ -1,22 +1,29 @@
 import { useState } from 'react';
 import './App.css';
 
-function NotesList({ notes } : {notes:any}) {
+function NotesList({ notes, handleDeleteNote} : {notes:any, handleDeleteNote:any}) {
   return (
+    <>
     <ul>
       {notes.map((note : any , index : any) => (
         <li key={index}>
-          <p>{note.title}</p>
+          <p><b>{note.title}</b></p>
           <p>{note.description}</p>
+          <button onClick={() => handleDeleteNote(index)}>Delete</button>
         </li>
       ))}
     </ul>
+    </>
   );
 }
 
 function Note({handleAddNote}: {handleAddNote: any}){
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const addNote = () => {
+    handleAddNote({title, description});
+  }
 
   return(
     <>
@@ -33,7 +40,7 @@ function Note({handleAddNote}: {handleAddNote: any}){
       placeholder="Enter description"
     />
     <br />
-    <button onClick={() => handleAddNote(title, description)}>Add Note</button>
+    <button onClick={addNote}>Add Note</button>
     </>
   )
 }
@@ -41,9 +48,13 @@ function Note({handleAddNote}: {handleAddNote: any}){
 function App() {
   const [notes, setNotes] = useState<Array<{ title: any; description: any }>>([]);
 
-  const handleAddNote = (title: any, description: any) => {
-    setNotes([...notes, { title: title, description: description }]);
+  const handleAddNote = ({ title, description }: { title: any; description: any }) => {
+    setNotes([...notes, { title, description }]);
   };
+
+  const handleDeleteNote = (index: any) => {
+    setNotes(notes.filter((_, i) => i !== index));
+  }
 
   return (
     <div>
@@ -53,7 +64,7 @@ function App() {
       </div>
       <hr />
       <h2>Notes:</h2>
-      <NotesList notes={notes} />
+      <NotesList notes={notes} handleDeleteNote={handleDeleteNote} />
     </div>
   );
 };
