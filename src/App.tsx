@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import './App.css';
 
-function Notes({ notes, handleDeleteNote} : {notes:any, handleDeleteNote:any}) {
+type Note = {
+  title: string;
+  description: string;
+}
+
+function Notes({ notes, handleDeleteNote} : {notes: Note[], handleDeleteNote: any}) {
   return (
     <>
     <ul>
-      {notes.map((note : any , index : any) => (
+      {notes.map((note : Note , index : number) => (
         <li key={index}>
           <p><b>{note.title}</b></p>
           <p>{note.description}</p>
@@ -29,7 +34,7 @@ function Note({handleAddNote}: {handleAddNote: any}){
   const handleButtonClick = () => {
     handleAddNote({title, description});
     handleEmptyInput();
-  };
+  }
 
   return(
     <>
@@ -52,13 +57,13 @@ function Note({handleAddNote}: {handleAddNote: any}){
 }
 
 function App() {
-  const [notes, setNotes] = useState<Array<{ title: any; description: any }>>([]);
+  const [notes, setNotes] = useState<Note[]>([]);
 
-  const handleAddNote = ({ title, description }: { title: any; description: any }) => {
-    setNotes([...notes, { title, description }]);
+  const handleAddNote = (note: Note) => {
+    setNotes([...notes, note]);
   }
 
-  const handleDeleteNote = (index: any) => {
+  const handleDeleteNote = (index: number) => {
     setNotes(notes.filter((_, i) => i !== index));
   }
 
