@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-function NotesList({ notes, handleDeleteNote} : {notes:any, handleDeleteNote:any}) {
+function Notes({ notes, handleDeleteNote} : {notes:any, handleDeleteNote:any}) {
   return (
     <>
     <ul>
@@ -70,7 +70,7 @@ function App() {
       </div>
       <hr />
       <h2>Notes:</h2>
-      <NotesList notes={notes} handleDeleteNote={handleDeleteNote} />
+      <Notes notes={notes} handleDeleteNote={handleDeleteNote} />
     </div>
   );
 };
