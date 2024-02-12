@@ -21,17 +21,13 @@ function Note({handleAddNote}: {handleAddNote: any}){
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const addNote = () => {
-    handleAddNote({title, description});
-  }
-
   const handleEmptyInput = () => {
     setTitle("");
     setDescription("");
   }
 
   const handleButtonClick = () => {
-    addNote();
+    handleAddNote({title, description});
     handleEmptyInput();
   };
 
