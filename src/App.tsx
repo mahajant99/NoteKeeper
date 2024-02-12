@@ -6,7 +6,16 @@ type Note = {
   description: string;
 }
 
-function Notes({ notes, handleDeleteNote} : {notes: Note[], handleDeleteNote: any}) {
+interface NotesProps {
+  notes: Note[];
+  handleDeleteNote: (index: number) => void;
+}
+
+interface NoteProps {
+  handleAddNote: (note: Note) => void;
+}
+
+function Notes({ notes, handleDeleteNote}: NotesProps) {
   return (
     <>
     <ul>
@@ -22,7 +31,7 @@ function Notes({ notes, handleDeleteNote} : {notes: Note[], handleDeleteNote: an
   );
 }
 
-function Note({handleAddNote}: {handleAddNote: any}){
+function Note({handleAddNote}: NoteProps){
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
