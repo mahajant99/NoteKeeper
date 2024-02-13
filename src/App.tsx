@@ -1,69 +1,8 @@
 import { useState } from 'react';
+import { Note } from './types';
+import NoteComponent from './components/NoteComponent';;
+import Notes from './components/Notes';
 import './App.css';
-
-type Note = {
-  title: string;
-  description: string;
-}
-
-interface NotesProps {
-  notes: Note[];
-  handleDeleteNote: (index: number) => void;
-}
-
-interface NoteProps {
-  handleAddNote: (note: Note) => void;
-}
-
-function Notes({ notes, handleDeleteNote}: NotesProps) {
-  return (
-    <>
-    <ul>
-      {notes.map((note : Note , index : number) => (
-        <li key={index}>
-          <p><b>{note.title}</b></p>
-          <p>{note.description}</p>
-          <button onClick={() => handleDeleteNote(index)}>Delete</button>
-        </li>
-      ))}
-    </ul>
-    </>
-  );
-}
-
-function Note({handleAddNote}: NoteProps){
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  const handleEmptyInput = () => {
-    setTitle("");
-    setDescription("");
-  }
-
-  const handleButtonClick = () => {
-    handleAddNote({title, description});
-    handleEmptyInput();
-  }
-
-  return(
-    <>
-    <input type="text" 
-      name="title" 
-      value={title} 
-      onChange={(e) => setTitle(e.target.value)} 
-      placeholder="Enter title" 
-    />
-    <br />
-    <textarea name="description" 
-      value={description} 
-      onChange={(e) => setDescription(e.target.value)}
-      placeholder="Enter description"
-    />
-    <br />
-    <button onClick={handleButtonClick}>Add Note</button>
-    </>
-  )
-}
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -80,7 +19,7 @@ function App() {
     <div>
       <h1>Notekeeper App</h1>
       <div>
-        <Note handleAddNote={handleAddNote} />        
+        <NoteComponent handleAddNote={handleAddNote} />        
       </div>
       <hr />
       <h2>Notes:</h2>
