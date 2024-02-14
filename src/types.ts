@@ -1,6 +1,6 @@
 export type Note = {
     id: number;
-    title: string;
+    name: string;
     description: string;
     priority: TaskPriority;
     status: TaskStatus;
