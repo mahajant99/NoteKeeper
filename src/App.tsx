@@ -1,22 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Note } from './types';
 import NoteComponent from './components/NoteComponent';;
 import Notes from './components/Notes';
 import './App.css';
 
 function App() {
-  const getNotes = localStorage.getItem('notes');
-  const notesList = getNotes ? JSON.parse(getNotes) : [];
-
-  const [notes, setNotes] = useState<Note[]>(notesList);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('notes', JSON.stringify(notes));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [notes]);
+  const [notes, setNotes] = useState<Note[]>([]);
 
   const handleAddNote = (note: Note) => {
     setNotes([...notes, note]);
