@@ -7,3 +7,7 @@ export const fetchNotes = async () => {
     const response = await axios.get<Note[]>(API_URL);
     return response.data;
 };
+
+export const deleteNote = async (id: number) => {
+    await axios.delete(`${API_URL}/${id}`);
+};
