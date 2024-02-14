@@ -3,6 +3,12 @@ export type Note = {
     description: string;
 }
 
+export enum TaskPriority {
+    High = 'High',
+    Medium = 'Medium',
+    Low = 'Low'
+}
+
 export enum TaskStatus {
     Pending = 'Pending',
     Completed = 'Completed'
