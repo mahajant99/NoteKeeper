@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Note } from '../types';
+import { Note, TaskPriority } from '../types';
 
 interface NoteProps {
     handleAddNote: (note: Note) => void;
@@ -9,6 +9,8 @@ interface NoteProps {
 function NoteComponent({handleAddNote}: NoteProps){
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState<TaskPriority>(TaskPriority.Low);
+
 
   const handleEmptyInput = () => {
     setTitle("");
@@ -35,6 +37,11 @@ function NoteComponent({handleAddNote}: NoteProps){
       placeholder="Enter description"
     />
     <br />
+    <select value={priority} onChange={e => setPriority(e.target.value as TaskPriority)}>
+      {Object.values(TaskPriority).map(priority => (
+      <option key={priority} value={priority}>{priority}</option>
+      ))}
+    </select>
     <button onClick={handleButtonClick}>Add Note</button>
     </>
   )
