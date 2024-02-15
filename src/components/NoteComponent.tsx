@@ -1,33 +1,39 @@
 import { useState } from 'react';
-import { Note, TaskPriority } from '../types';
+import { Note, TaskPriority, TaskStatus } from '../types';
+import { createNote } from '../TaskAPIService';
 
 interface NoteProps {
   addNote: (note: Note) => void;
 }
 
-
 function NoteComponent({addNote}: NoteProps){
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<TaskPriority>(TaskPriority.Low);
 
 
   const handleEmptyInput = () => {
-    setTitle("");
+    setName("");
     setDescription("");
   }
 
-  const handleButtonClick = () => {
-    addNote({title, description});
+  const handleButtonClick = async () => {
+    const newNote = await createNote({
+      name: name,
+      description: description,
+      priority: priority,
+      status: TaskStatus.Pending
+    });  
+    addNote(newNote);
     handleEmptyInput();
   }
 
   return(
     <>
     <input type="text" 
-      name="title" 
-      value={title} 
-      onChange={(e) => setTitle(e.target.value)} 
+      name="name" 
+      value={name} 
+      onChange={(e) => setName(e.target.value)} 
       placeholder="Enter title" 
     />
     <br />

@@ -26,8 +26,9 @@ function App() {
     <div>
       <h1>Notekeeper App</h1>
       <div>
-      <NoteComponent addNote={addNote} />              </div>
-      <hr />
+        <NoteComponent addNote={addNote} />
+      </div>
+      <hr/>
       <h2>Notes:</h2>
       <Notes notes={notes} handleDeleteNote={handleDeleteNote} />
     </div>
