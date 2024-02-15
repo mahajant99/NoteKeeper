@@ -1,5 +1,5 @@
 export type Note = {
-    id: number;
+    id?: number;
     name: string;
     description: string;
     priority: TaskPriority;
