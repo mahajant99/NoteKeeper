@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Note } from './types';
-import { fetchNotes } from './TaskAPIService';
+import { deleteNote, fetchNotes } from './TaskAPIService';
 
 import NoteComponent from './components/NoteComponent';;
 import Notes from './components/Notes';
@@ -18,8 +18,9 @@ function App() {
     setNotes([...notes, note]);
   }
 
-  const handleDeleteNote = (index: number) => {
-    setNotes(notes.filter((_, i) => i !== index));
+  const handleDeleteNote = async (id: number) => {
+    await deleteNote(id);
+    setNotes(notes.filter(note => note.id !== id));
   }
 
   return (
