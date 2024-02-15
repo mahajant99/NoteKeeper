@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Note } from './types';
+import { fetchNotes } from './TaskAPIService';
+
 import NoteComponent from './components/NoteComponent';;
 import Notes from './components/Notes';
+
 import './App.css';
-import { fetchNotes } from './api/TaskService';
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);

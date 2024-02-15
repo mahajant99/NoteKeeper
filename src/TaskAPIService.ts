@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Note } from '../types';
+import { Note } from './types';
 
 const API_URL = "http://localhost:8080/tasks";
 
