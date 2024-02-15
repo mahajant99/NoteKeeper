@@ -12,7 +12,7 @@ function App() {
     fetchNotes().then(setNotes);
   })
 
-  const handleAddNote = (note: Note) => {
+  const addNote = (note: Note) => {
     setNotes([...notes, note]);
   }
 
@@ -24,7 +24,7 @@ function App() {
     <div>
       <h1>Notekeeper App</h1>
       <div>
-      <NoteComponent handleAddNote={handleAddNote} />              </div>
+      <NoteComponent addNote={addNote} />              </div>
       <hr />
       <h2>Notes:</h2>
       <Notes notes={notes} handleDeleteNote={handleDeleteNote} />
