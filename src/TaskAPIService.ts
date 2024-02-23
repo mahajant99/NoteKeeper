@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Note } from './types';
 
-const API_URL = "http://localhost:8080/tasks";
+const API_URL = "https://todoapplication-d88v.onrender.com/tasks";
 
 export const fetchNotes = async () => {
     const response = await axios.get<Note[]>(API_URL);
