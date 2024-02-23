@@ -12,7 +12,7 @@ function App() {
 
   useEffect (() => {
     fetchNotes().then(setNotes);
-  })
+  },[])
 
   const addNote = (note: Note) => {
     setNotes([...notes, note]);
